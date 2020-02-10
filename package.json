@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .js ./src",
+    "packager": "env watchman watch-del-all && npm start -- --reset-cache"
   },
   "dependencies": {
     "react": "16.9.0",
