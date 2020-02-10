@@ -1,6 +1,6 @@
 # React Native Starter :star: _Yorkshire Edition_ :coffee:
 
-A React Native starter kit with the aim to implement scalable "gold star" standards from the get go.
+A React Native starter repo with the aim to implement scalable "gold star" standards from the get go.
 
 ## Intro
 
@@ -17,12 +17,14 @@ This starter will setup you up with a project that:
 3. Redux, Redux-Thunk
 4. React Native Debugger
 5. React Navigation
-6. Axios and Authentication
-7. Basic screens
+6. Axios
+7. Formik and Auth forms
+8. Basic screens
 
 > We'll probably sprinkle some Lodash/FP in there to get things going.
 
 - Analytics?
+- Crashes? Sentry?
 - Firebase? Push Notifications?
 - Deeplinks?
 - Redux Persist?
@@ -30,6 +32,12 @@ This starter will setup you up with a project that:
 - Unit tests? Jest?
 - Integration tests? Jest?
 - Detox/Appium E2E tests?
+- Fastlane?
+- Project.pbx setup?
+
+## Assumptions
+
+- You enjoy single line quotes, no semi-colon enforcement and auto-formatting from Prettier.
 
 ## Motivations
 
