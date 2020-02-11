@@ -38,6 +38,8 @@ This starter will setup you up with a project that:
 ## Assumptions
 
 - You enjoy single line quotes, no semi-colon enforcement and auto-formatting from Prettier.
+- You agree with the current ESLint ruling - this is mainly what I'm used to so go fish for something different.
+- You're potentially going to require that your state/ folder is going to be shared across multiple platforms.
 
 ## Motivations
 
