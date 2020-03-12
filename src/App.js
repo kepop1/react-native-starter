@@ -35,7 +35,7 @@ const App = ({ navigation }) => {
           style={styles.scrollView}
         >
           <Button
-            title={'Hello'}
+            title="Hello"
             onPress={() => navigation.navigate('Welcome')}
           />
 
