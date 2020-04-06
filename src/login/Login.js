@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import { object } from 'yup'
 import * as Yup from 'yup'
 
 import { Button, TextButton, TextInput } from '../lib'
+
+import { loginAttempt, loginSuccess } from '../state/login/actions'
 
 const validationSchema = object().shape({
   email: Yup.string().required('Please enter an email address'),
@@ -18,16 +21,24 @@ const initialValues = {
 
 export const Login = ({ navigation }) => {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const dispatch = useDispatch()
 
   const onSubmit = async ({ email, password }) => {
     try {
-      // setLoading(true)
-      // const user = await dispatch(submitLogin(email, password))
-      // Dispatch some sort of login thunk attempt
+      setLoading(true)
+      const loginResponse = await loginAttempt(email, password)
+
+      if (loginResponse.status === 404) throw loginResponse
+
+      if (loginResponse.status === 200) {
+        dispatch(loginSuccess(response.data.authToken))
+        navigation.navigate('Main')
+      }
     } catch (error) {
-      //something to catch an error
+      setError(`${error.data.message}`)
     } finally {
-      //something
+      setLoading(false)
     }
   }
 
@@ -77,7 +88,13 @@ export const Login = ({ navigation }) => {
             <Text style={styles.error}>{errors.password}</Text>
           )}
 
-          <Button onPress={() => handleSubmit} label="Login" />
+          {error && <Text style={styles.error}>{error}</Text>}
+
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Button onPress={handleSubmit} label="Login" />
+          )}
 
           <TextButton
             onPress={() => navigation.navigate('Register')}

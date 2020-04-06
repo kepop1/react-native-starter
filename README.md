@@ -53,4 +53,9 @@ Maybe one day
 
 RIP
 
+Network requests not showing in React Native Debugger?
+This could be for a multitude of reasons but more than likely you haven't right clicked in the left side / state window and clicked 'Enable Network Inspect'. **I think it's silly as well but it's what we've got**.
+
+If you're confused why you can't see you're state/state tree in React Native Debugger -> make sure the redux tools aren't on auto select as it might default to React Navigation rather than the redux state!
+
 # Useful links

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { firstReducer } from './state'
+import login from './state/login/reducer'
 
 export default combineReducers({
-  firstReducer
+  login
 })
