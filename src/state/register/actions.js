@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-import { LOGIN_URL, getRequestParams } from '../../api/config'
-import { LOGIN_SUCCESS } from './constants'
+import { REGISTER_URL, getRequestParams } from '../../api/config'
 
-export const loginAttempt = async (email, password) => {
+export const registerAttempt = async (firstName, email, password) => {
   const parameters = getRequestParams()
 
   try {
     const response = await axios.post(
-      LOGIN_URL,
+      REGISTER_URL,
       {
+        firstName,
         email,
         password
       },
@@ -20,8 +20,3 @@ export const loginAttempt = async (email, password) => {
     return error.response
   }
 }
-
-export const loginSuccess = authToken => ({
-  type: LOGIN_SUCCESS,
-  authToken
-})

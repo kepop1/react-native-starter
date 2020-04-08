@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import { object } from 'yup'
@@ -14,29 +15,40 @@ const validationSchema = object().shape({
   password: Yup.string().required('Please enter a password')
 })
 
-const initialValues = {
-  email: '',
-  password: ''
-}
-
-export const Login = ({ navigation }) => {
+export const Login = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [apiError, setApiError] = useState(null)
+  const [registeredEmail, setRegisteredEmail] = useState(null)
   const dispatch = useDispatch()
+
+  useFocusEffect(
+    React.useCallback(() => {
+      if (route?.params?.email) {
+        setRegisteredEmail(route.params.email)
+      }
+    }, [route])
+  )
+
+  const initialValues = {
+    email: registeredEmail || '',
+    password: ''
+  }
 
   const onSubmit = async ({ email, password }) => {
     try {
       setLoading(true)
       const loginResponse = await loginAttempt(email, password)
 
-      if (loginResponse.status === 404) throw loginResponse
+      if (loginResponse.status === 404) {
+        throw loginResponse
+      }
 
       if (loginResponse.status === 200) {
-        dispatch(loginSuccess(response.data.authToken))
+        dispatch(loginSuccess(loginResponse.data.authToken))
         navigation.navigate('Main')
       }
     } catch (error) {
-      setError(`${error.data.message}`)
+      if (error?.data?.message) setApiError(`${error.data.message}`)
     } finally {
       setLoading(false)
     }
@@ -47,6 +59,7 @@ export const Login = ({ navigation }) => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+      enableReinitialize
     >
       {({
         values,
@@ -60,7 +73,6 @@ export const Login = ({ navigation }) => {
           <Text style={styles.header}>Login</Text>
 
           <TextInput
-            style={styles.textInput}
             placeholder="Email"
             onBlur={handleBlur('email')}
             onChangeText={handleChange('email')}
@@ -71,8 +83,6 @@ export const Login = ({ navigation }) => {
           />
 
           <TextInput
-            style={styles.textInput}
-            styleOverride={{ marginTop: 20 }}
             placeholder="Password"
             onBlur={handleBlur('password')}
             onChangeText={handleChange('password')}
@@ -88,7 +98,7 @@ export const Login = ({ navigation }) => {
             <Text style={styles.error}>{errors.password}</Text>
           )}
 
-          {error && <Text style={styles.error}>{error}</Text>}
+          {apiError && <Text style={styles.error}>{apiError}</Text>}
 
           {loading ? (
             <ActivityIndicator />

@@ -1,35 +1,45 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
 import { Formik } from 'formik'
 import { object } from 'yup'
 import * as Yup from 'yup'
 
 import { Button, TextButton, TextInput } from '../lib'
 
+import { registerAttempt } from '../state/register/actions'
+
 const validationSchema = object().shape({
   email: Yup.string().required('Please enter an email address'),
-  name: Yup.string().required('Please enter a name'),
+  firstName: Yup.string().required('Please enter your first name'),
   password: Yup.string().required('Please enter a password')
 })
 
 const initialValues = {
   email: '',
-  name: '',
+  firstName: '',
   password: ''
 }
 
 export const Register = ({ navigation }) => {
   const [loading, setLoading] = useState(false)
+  const [apiError, setApiError] = useState(null)
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ firstName, email, password }) => {
     try {
-      // setLoading(true)
-      // const user = await dispatch(submitRegister(email, password))
-      // Dispatch some sort of register thunk attempt
+      setLoading(true)
+      const registerResponse = await registerAttempt(firstName, email, password)
+
+      if (registerResponse.status === 404) {
+        throw registerResponse
+      }
+
+      if (registerResponse.status === 201) {
+        navigation.navigate('Login', { email: registerResponse.data.email })
+      }
     } catch (error) {
-      //something to catch an error
+      if (error?.data?.message) setApiError(`${error.data.message}`)
     } finally {
-      //something
+      setLoading(false)
     }
   }
 
@@ -51,20 +61,20 @@ export const Register = ({ navigation }) => {
           <Text style={styles.header}>Register</Text>
 
           <TextInput
+            placeholder="First Name"
+            onBlur={handleBlur('firstName')}
+            onChangeText={handleChange('firstName')}
+            value={values.firstName}
+            autoFocus
+          />
+
+          <TextInput
             placeholder="Email"
             onBlur={handleBlur('email')}
             onChangeText={handleChange('email')}
             autoCapitalize="none"
             keyboardType="email-address"
             value={values.email}
-            autoFocus
-          />
-
-          <TextInput
-            placeholder="Name"
-            onBlur={handleBlur('name')}
-            onChangeText={handleChange('name')}
-            value={values.name}
             autoFocus
           />
 
@@ -84,10 +94,20 @@ export const Register = ({ navigation }) => {
             <Text style={styles.error}>{errors.password}</Text>
           )}
 
-          <Button onPress={() => handleSubmit} label="Register" />
+          {touched.firstName && errors.firstName && (
+            <Text style={styles.error}>{errors.firstName}</Text>
+          )}
+
+          {apiError && <Text style={styles.error}>{apiError}</Text>}
+
+          {loading ? (
+            <ActivityIndicator />
+          ) : (
+            <Button onPress={handleSubmit} label="Register" />
+          )}
 
           <TextButton
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigation.navigate('Login')}
             label="Already have an account? Login!"
           />
         </View>
