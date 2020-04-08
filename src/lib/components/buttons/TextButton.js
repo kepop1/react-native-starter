@@ -8,11 +8,6 @@ export const TextButton = ({ onPress, label, styleOverride }) => (
 )
 
 const styles = StyleSheet.create({
-  buttonText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: 'white'
-  },
   textButton: {
     fontSize: 16,
     fontWeight: '600',
@@ -20,6 +15,7 @@ const styles = StyleSheet.create({
     paddingVertical: 7.5,
     paddingHorizontal: 60,
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: 15,
+    textAlign: 'center'
   }
 })

@@ -6,8 +6,8 @@ export const REGISTER_URL = `${BASE_URL}/register`
 export const getRequestParams = authToken => {
   const parameters = {}
 
-  parameters['Accept'] = 'application/json'
+  parameters.Accept = 'application/json'
   parameters['Content-Type'] = 'application/json'
 
-  if (authToken) parameters['Authorization'] = `Bearer ${authToken}`
+  if (authToken) parameters.Authorization = `Bearer ${authToken}`
 }

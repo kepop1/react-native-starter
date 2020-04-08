@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { Formik } from 'formik'
 import { object } from 'yup'
@@ -18,16 +17,9 @@ const validationSchema = object().shape({
 export const Login = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState(null)
-  const [registeredEmail, setRegisteredEmail] = useState(null)
   const dispatch = useDispatch()
 
-  useFocusEffect(
-    React.useCallback(() => {
-      if (route?.params?.email) {
-        setRegisteredEmail(route.params.email)
-      }
-    }, [route])
-  )
+  const registeredEmail = route?.params?.email
 
   const initialValues = {
     email: registeredEmail || '',
