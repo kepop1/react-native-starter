@@ -12,9 +12,20 @@ To be honest it exists to fill that gap when you want to start a new side projec
 
 ## Getting Started
 
-> For the love of god, follow everything here: https://facebook.github.io/react-native/docs/getting-started
+For the love of god, follow everything here: https://facebook.github.io/react-native/docs/getting-started
 
-Self explanatory
+> Some helpful things you might forget to do:
+>
+> - iOS: `cd ios`, `pod install` - get your ios pods installed - sometimes `pod repo update` is required too.
+> - Android: `cd android`, `./gradlew clean` - these are useful when Android bricks
+
+You should be able to follow the getting started documents and then run the commands from the package.json to get going.
+
+A nice workflow would be: `yarn ios` or `yarn android` with another terminal tab running the packager `yarn packager`, ios will automatically open a simulator, android won't.
+
+You can also run the app through the respective IDEs in Android Studio and XCode which will look after the bundler, but they're both monsters for processing power.
+
+For debugging life is going to be harder without [React Native Debugger]('https://github.com/jhen0409/react-native-debugger')
 
 ## Outline
 
@@ -32,30 +43,46 @@ This starter will setup you up with a project has:
 In the future maybe? :thinking:
 
 - Jest (Unit & Integration Tests)
-- TypeScript?
-- Analytics?
-- Crashes? Sentry?
-- Firebase? Push Notifications?
-- Deeplinks?
-- Redux Persist/Offline?
-
-- Detox/Appium E2E tests?
+- TypeScript
+- Detox/Appium (E2E tests)
 - Fastlane?
 - Project.pbx setup?
+- Analytics?
+- Crashes? Sentry?
+- Deeplinks?
+- Redux Persist/Offline?
+- Firebase? Push Notifications?
+
+## Reccomended VS Code Extensions
+
+> These are the ones that I've found help with the dev workflow - you might equally find them not so helpful.
+
+- Auto Close Tag _(Essential)_
+- Auto Rename Tag _(Essential)_
+- Babel JavaScript _(Essential)_
+- ESLint _(Essential)_
+- Prettier _(Essential)_
+- Code Spell Checker _(Handy)_
+- Color Highlight _(Handy)_
+- Partial Diff _(Handy allows selection of text CTRL+C and then right click on another selection to - get a git like compare view)_
+- Path Intellisense _(Handy)_
+- Rainbow Brackets _(Depends on how much you like colours - but it's quicker nested function identification)_
+- vscode-icons _(VSCode's icons have come along way but these are still a litle better)_
+- GitLens _(This can be a bit resource intensive)_
 
 ## Assumptions
 
-- You enjoy single line quotes, no semi-colon enforcement and auto-formatting from Prettier.
-- You agree with the current ESLint ruling - this is mainly what I'm used to so go fish for something different.
-- You're potentially going to require that your state/ folder is going to be shared across multiple platforms.
+- You enjoy single line quotes, no semi-colon enforcement and pretty much all the auto-formatting from Prettier out of the box.
+- You agree with the current ESLint ruling for both React / React Native / React Hooks
+- You're potentially going to require that your state/ folder is going to be shared and you prefer the logic siloed out.
 
 ## Troubleshooting
 
-Network requests not showing in React Native Debugger?
-This could be for a multitude of reasons but more than likely you haven't right clicked in the left side / state window and clicked 'Enable Network Inspect'. **I think it's silly as well but it's what we've got**.
+- Network requests not showing in React Native Debugger?
+  This could be for a multitude of reasons but more than likely you haven't right clicked in the left side / state window and clicked 'Enable Network Inspect'. **I think it's silly as well but it's what we've got**.
 
-If you're confused why you can't see you're state/state tree in React Native Debugger -> make sure the redux tools aren't on auto select as it might default to React Navigation rather than the redux state!
+- If you're confused why you can't see you're state/state tree in React Native Debugger -> make sure the redux tools aren't on auto select as it might default to React Navigation rather than the redux state!
 
 ## Useful links
 
-Todo
+When I get some worthy of this lovely list - I'll add them up!
