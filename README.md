@@ -27,6 +27,8 @@ You can also run the app through the respective IDEs in Android Studio and XCode
 
 For debugging life is going to be harder without [React Native Debugger]('https://github.com/jhen0409/react-native-debugger')
 
+There's an example auth server in `server/` which is it's own express app. To get that running it's the usual `yarn` then `yarn dev` to get it going :thumbsup:
+
 ## Outline
 
 This starter will setup you up with a project has:
