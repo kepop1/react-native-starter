@@ -77,6 +77,7 @@ In the future maybe? :thinking:
 - You enjoy single line quotes, no semi-colon enforcement and pretty much all the auto-formatting from Prettier out of the box.
 - You agree with the current ESLint ruling for both React / React Native / React Hooks
 - You're potentially going to require that your state/ folder is going to be shared and you prefer the logic siloed out.
+- You're ok with having a font added by default, as it can be a quirk to setup and it'll show you where it needs to go.
 
 ## Troubleshooting
 
@@ -87,4 +88,25 @@ In the future maybe? :thinking:
 
 ## Useful links
 
-When I get some worthy of this lovely list - I'll add them up!
+### Adding custom fonts?
+
+https://github.com/facebook/react-native/issues/25852
+
+Don't forget to run `npx react-native link` afterwards
+
+### Generating icons?
+
+https://medium.com/better-programming/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c
+
+iOS: https://appiconmaker.co/Home/Index/b1b50d72-22a5-4939-98fb-6acb7c3c6f6d TLDR: Pop em in the AppIcon in Image.xcassets inside of XCode.
+Android:http://romannurik.github.io/AndroidAssetStudio/icons-launcher.html TLDR: Make the square ones, download them rounded, check they don't go over the edges either!
+
+### Generating screenshots?
+
+https://help.apple.com/app-store-connect/#/devd274dd925 Is useful for screenshot sizing
+
+https://facebook.design/devices Is useful for getting device frames for the screenshots
+
+### Want a splash screen?
+
+https://medium.com/@appstud/add-a-splash-screen-to-a-react-native-app-810492e773f9 for the splashscreen implementation

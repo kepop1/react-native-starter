@@ -114,9 +114,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 18,
-    fontWeight: '900',
+    fontFamily: 'OpenSans-Bold',
     textAlign: 'center',
-    letterSpacing: 1,
     marginBottom: 30
   },
   error: {
