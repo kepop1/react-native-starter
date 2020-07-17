@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 
 import { Button, TextButton, TextInput, Core, Font } from '../lib'
 
+import { ROUTE_MAIN, ROUTE_REGISTER } from '../navigation/constants'
 import { loginAttempt, loginSuccess } from '../state/login/actions'
 
 const validationSchema = object().shape({
@@ -37,7 +38,7 @@ export const Login = ({ route, navigation }) => {
 
       if (loginResponse.status === 200) {
         dispatch(loginSuccess(loginResponse.data.authToken))
-        navigation.navigate('Main')
+        navigation.navigate(ROUTE_MAIN)
       }
     } catch (error) {
       if (error?.data?.message) setApiError(`${error.data.message}`)
@@ -99,7 +100,7 @@ export const Login = ({ route, navigation }) => {
           )}
 
           <TextButton
-            onPress={() => navigation.navigate('Register')}
+            onPress={() => navigation.navigate(ROUTE_REGISTER)}
             label="Register"
           />
         </View>

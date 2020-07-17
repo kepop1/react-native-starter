@@ -6,6 +6,7 @@ import * as Yup from 'yup'
 
 import { Button, TextButton, TextInput, Core, Font } from '../lib'
 
+import { ROUTE_LOGIN } from '../navigation/constants'
 import { registerAttempt } from '../state/register/actions'
 
 const validationSchema = object().shape({
@@ -34,7 +35,7 @@ export const Register = ({ navigation }) => {
       }
 
       if (registerResponse.status === 201) {
-        navigation.navigate('Login', { email: registerResponse.data.email })
+        navigation.navigate(ROUTE_LOGIN, { email: registerResponse.data.email })
       }
     } catch (error) {
       if (error?.data?.message) setApiError(`${error.data.message}`)
@@ -107,7 +108,7 @@ export const Register = ({ navigation }) => {
           )}
 
           <TextButton
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate(ROUTE_LOGIN)}
             label="Already have an account? Login!"
           />
         </View>
