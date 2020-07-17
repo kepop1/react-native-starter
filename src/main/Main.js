@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { useSelector } from 'react-redux'
+import { Core, Font } from '../lib'
 
 export const Main = () => {
   const user = useSelector(state => state.login.user)
@@ -12,7 +13,7 @@ export const Main = () => {
       <Text style={styles.text}>
         Who knows maybe this will be a fancy menu or dashboard someday! {'\n'}
       </Text>
-      <Text>User Object: {JSON.stringify(user)}</Text>
+      <Text style={styles.italicText}>User Object: {JSON.stringify(user)}</Text>
     </View>
   )
 }
@@ -20,21 +21,29 @@ const styles = StyleSheet.create({
   container: {
     alignContent: 'center',
     justifyContent: 'center',
-    margin: 50,
-    paddingBottom: 20,
-    paddingHorizontal: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
+    margin: Core.unit * 4,
+    paddingBottom: Core.unit,
+    paddingHorizontal: Core.unit,
+    backgroundColor: Core.color.cyberGrape,
+    borderRadius: Core.unit,
     shadowColor: 'black',
     shadowOffset: { height: 3 },
-    shadowRadius: 10,
+    shadowRadius: Core.unit / 1.5,
     shadowOpacity: 0.2,
     elevation: 5
   },
   text: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginTop: 20,
-    textAlign: 'center'
+    ...Font.sizes.subHeading,
+    ...Font.family.openSansBold,
+    marginTop: Core.unit,
+    textAlign: 'center',
+    color: 'white'
+  },
+  italicText: {
+    ...Font.sizes.body,
+    ...Font.family.openSansItalic,
+    marginTop: Core.unit,
+    textAlign: 'center',
+    color: Core.color.goldCrayola
   }
 })

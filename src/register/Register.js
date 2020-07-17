@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import { object } from 'yup'
 import * as Yup from 'yup'
 
-import { Button, TextButton, TextInput } from '../lib'
+import { Button, TextButton, TextInput, Core, Font } from '../lib'
 
 import { registerAttempt } from '../state/register/actions'
 
@@ -118,22 +118,20 @@ export const Register = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    padding: Core.unit
   },
   header: {
-    fontSize: 18,
-    fontWeight: '900',
+    ...Font.sizes.heading,
+    ...Font.family.openSansBold,
     textAlign: 'center',
-    letterSpacing: 1,
-    marginBottom: 30
+    marginBottom: Core.unit * 2
   },
   error: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: 'red',
-    paddingVertical: 5,
-    paddingHorizontal: 5,
-    marginHorizontal: 35,
-    marginVertical: 5
+    ...Font.sizes.small,
+    ...Font.family.openSansBold,
+    color: Core.color.vividBurgundy,
+    padding: Core.unit / 2,
+    marginHorizontal: Core.unit * 2,
+    marginVertical: Core.unit / 2
   }
 })

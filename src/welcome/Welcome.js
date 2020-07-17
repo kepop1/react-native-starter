@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-import { Button, TextButton } from '../lib'
+import { Button, TextButton, Core, Font } from '../lib'
 
 export const Welcome = ({ navigation }) => (
   <View style={styles.container}>
@@ -21,20 +21,20 @@ export const Welcome = ({ navigation }) => (
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    padding: Core.unit
   },
   header: {
-    fontSize: 18,
-    fontWeight: '900',
+    ...Font.sizes.heading,
+    ...Font.family.openSansBold,
     textAlign: 'center',
     letterSpacing: 1,
-    marginBottom: 30
+    marginBottom: Core.unit * 2
   },
   text: {
-    paddingVertical: 60,
+    paddingVertical: Core.unit * 3,
     textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '500',
+    ...Font.sizes.body,
+    ...Font.family.openSansRegular,
     lineHeight: 22
   }
 })

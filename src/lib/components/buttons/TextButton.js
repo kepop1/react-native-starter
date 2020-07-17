@@ -1,5 +1,7 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { Font } from '../../Font'
+import { Core } from '../../Core'
 
 export const TextButton = ({ onPress, label, styleOverride }) => (
   <TouchableOpacity onPress={onPress}>
@@ -9,13 +11,13 @@ export const TextButton = ({ onPress, label, styleOverride }) => (
 
 const styles = StyleSheet.create({
   textButton: {
-    fontSize: 16,
-    fontWeight: '600',
+    ...Font.sizes.body,
+    ...Font.family.openSansBold,
     color: 'lime',
-    paddingVertical: 7.5,
-    paddingHorizontal: 60,
+    paddingVertical: Core.unit / 2,
+    paddingHorizontal: Core.unit * 4,
     alignSelf: 'center',
-    marginTop: 15,
+    marginTop: Core.unit,
     textAlign: 'center'
   }
 })

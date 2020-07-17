@@ -1,5 +1,7 @@
 import React from 'react'
 import { TextInput as RNTextInput, StyleSheet } from 'react-native'
+import { Font } from '../../Font'
+import { Core } from '../../Core'
 
 export const TextInput = ({
   placeholder,
@@ -27,12 +29,12 @@ export const TextInput = ({
 
 const styles = StyleSheet.create({
   textInput: {
-    fontSize: 14,
-    fontWeight: '400',
+    ...Font.sizes.subHeading,
+    ...Font.family.openSansRegular,
     backgroundColor: 'white',
-    paddingVertical: 10,
-    paddingHorizontal: 5,
-    marginHorizontal: 35,
-    marginBottom: 20
+    paddingVertical: Core.unit,
+    paddingHorizontal: Core.unit / 2,
+    marginHorizontal: Core.unit * 2,
+    marginBottom: Core.unit
   }
 })
