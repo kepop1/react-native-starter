@@ -109,4 +109,4 @@ https://facebook.design/devices Is useful for getting device frames for the scre
 
 ### Want a splash screen?
 
-https://medium.com/@appstud/add-a-splash-screen-to-a-react-native-app-810492e773f9 for the splashscreen implementation
+https://medium.com/@appstud/add-a-splash-screen-to-a-react-native-app-810492e773f9 for the splashscreen implementation, the package used here is out of date now - it's worth looking at: https://github.com/zoontek/react-native-bootsplash
